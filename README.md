@@ -56,7 +56,7 @@ The miniimagenet and tieredimagenet-DeepEMD dataset can be downloaded from [FRN]
 
 We follow the pretrain method from FewTure for Swin-Tiny and ViT-Small backbone, MCL for ResNet-12 backbone.
 
-Download the pretrained model weights from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `pretrain/` folder.
+Download the pretrain weights from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `pretrain/` folder.
 
 ```
 Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12_67.509)
@@ -68,7 +68,7 @@ Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12
 
 Moreover, The train/test config and saved checkpoints are saved in the following format as above:
 
-Download the snapshot files from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
+Download the meta-train snapshot from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
 
 ### Meta-training
 
