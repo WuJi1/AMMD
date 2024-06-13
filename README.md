@@ -62,7 +62,7 @@ Download the pretrain weights from [Google Drive](https://drive.google.com/drive
 
 ```
 Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_AMMD_linear_triplet_N5K1_R12)
-├──Time-Accuracy
+├──Time_Accuracy (e.g., 2023-09-15-21_36_70.319)
 ├──── predictions.txt (evaluation acc)
 ├──── config.yaml
 ├──── ebest_Nway_Kshot.txt (validation best epoch .txt)
