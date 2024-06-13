@@ -35,10 +35,10 @@ Some comparing methods may require additional packages to run (e.g, OpenCV in De
 
 ## Dataset prepare
 
-The dataset should be placed in dir "./data/miniImagenet" (or "./data/tieredimagenet") with the following format:
+The dataset should be placed in dir "./data/dataset_name". For example, "./data/miniimagenet" is in the following format:
 
 ```
-MCL
+AMMD
 ├── data
 │   ├── miniImagenet
 │   │   ├── train
@@ -52,20 +52,17 @@ MCL
 │   │   │   ├──────
 ```
 
-The general mini-/tieredimagenet dataset can be downloaded from [DeepEMD](https://drive.google.com/drive/folders/1sXJgi9pXo8i3Jj1nk08Sxo6x7dAQjf9u?usp=sharing). The fine-grained datasets (i.e., CUB, meta-iNat and tiered meta-iNat) can be downloaded from [FRN](https://drive.google.com/drive/folders/1gHt-Ynku6Yc3mz6aKVTppIfNmzML1sNG).
+The miniimagenet and tieredimagenet-DeepEMD dataset can be downloaded from [FRN](https://drive.google.com/drive/folders/1gHt-Ynku6Yc3mz6aKVTppIfNmzML1sNG). The CIFAR-FS and FC100 datasets can be downloaded from [DeepEMD](https://drive.google.com/drive/folders/1sXJgi9pXo8i3Jj1nk08Sxo6x7dAQjf9u?usp=sharing).
+
+### Pretraining
+
+
 
 ## Train and test
 
-The train/test configs, tensorboard log and saved checkpoints are saved in the following format:
-```
-Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12_67.509)
-├── tensorboard_log_date
-│   ├──events.out.tfevents
-├── predictions.txt (evaluation acc)
-├── config.yaml
-├── ebest_Nway_Kshot.txt (validation best epoch .txt)
-├── ebest_Nway_Kshot.pth (validation best epocg .pth)
-```
+You can use the following links to download the train/test configs and saved checkpoints as following:
+
+
 
 Download the snapshot files from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
 
@@ -79,35 +76,10 @@ python experiments/run_evaluator.py \
   --device 0
 ```
 
-### Pretraining
-
-We provide three pretraining config files motivated by [FRN](https://github.com/Tsingularity/FRN), DN4 and Linear Classifier. For example, FRN pretrainer on miniimagenet ResNet12 is performed by:
-```
-python experiments/run_pre.py \
-  --cfg ./configs/miniImagenet/pretrainer/FRN_pre.yaml
-  --device 0
-```
-
-The tensorboard log and pretrained model is saved in `snapshots/ResNet-12/pretrainer/`.
-
 ### Meta-training
 
-For Conv-4 experiments, we directly train the model from scratch. Just select any of config files from `snapshots` folder to the `configs` directory, e.g.,
-```
-cp ./snapshots/Conv-4/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_Conv4_55.747/MEL_katz_N5K1_Conv4.yaml ./configs/miniImagenet/Conv-4/
-sh ./fast_train_test.sh ./configs/miniImagenet/Conv-4/MEL_katz_N5K1_Conv4.yaml 0
-```
+For ResNet-12 and Swin-Tiny experiments, we first select the config files by analogous: 
 
-For ResNet-12 experiments, we first select the config files by analogous: 
-```
-cp ./snapshots/ResNet-12/**/xxx.yaml ./configs/miniImagenet/ResNet-12/
-```
-Then we manually create the target checkpoint folders and copy (or soft link) the pretrained-model (e.g., `snapshots/ResNet-12/pretrainer/miniImagenet_FRN_pre/miniimagenet-e0_pre.pth`) to it:
-```
-mkdir ./checkpoint/xxx/
-cp ./snapshots/ResNet-12/pretrainer/miniImagenet_FRN_pre/miniimagenet-e0_pre.pth ./checkpoint/xxx/
-sh ./fast_train_test.sh ./configs/miniImagenet/ResNet-12/xxx.yaml 0
-```
 where `xxx` is the prefix of `.yaml` file and `0` indicates the GPU device number.
 
 ## Few-shot Classification Results
