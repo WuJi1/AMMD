@@ -1,0 +1,34 @@
+k_shot: 1
+train:
+    query_per_class_per_episode: 15
+    batch_size: 1
+    episode_per_epoch: 100
+    epochs: 100
+    lr_decay_epoch: 20
+    lr_decay: 0.5
+    learning_rate: 0.001
+    optim: "SGD"
+#    lr_decay_cosine: True
+model:
+    query: "AttenMMD_linear_triplet"
+    encoder: "swin_tiny"
+    tri_thres:  0.3 # 0.5
+    mmd:
+        alphas: 2.0
+        l2norm: True
+        has_proj: False
+        num_groups: 1
+        num_head: 8
+        AMMD_feature: 1
+        pool_type: 2
+        ADGM: "all"
+        attention_temperature: 0.02
+test:
+    query_per_class_per_episode: 15
+    batch_size: 1
+    
+data:
+    mode: "folder"
+    img_size: 224
+    image_dir: "/root/autodl-tmp/dataset/tiered-ImageNet_DeepEMD"
+
