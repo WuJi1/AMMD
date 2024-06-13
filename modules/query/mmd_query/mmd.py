@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from modules.layers.distances.mmd_distance import MMDDistance
-from modules.layers.distances.heterommd_distance import HeteroMMDDistance
 from modules.layers.attention import Attention,Multi_Cross_Attention
 from modules.utils.utils import Metaprompt, _l2norm, centering, triplet_loss, SupConLoss
 
@@ -32,11 +31,7 @@ class MMD(nn.Module):
         self.feat_dim = in_channels
         self.num_head = 8
         self.num_groups = cfg.model.mmd.num_groups
-        if cfg.model.mmd.num_groups == 1:
-            self.mmd = MMDDistance(cfg, kernel=self.kernel)
-        else:
-            self.mmd = HeteroMMDDistance(cfg, kernel=self.kernel)
-            self.group_dim = self.feat_dim // self.num_groups
+        self.mmd = MMDDistance(cfg, kernel=self.kernel)
 
     def forward(self, support_xf, support_y, query_xf, query_y):
         raise NotImplementedError
@@ -62,10 +57,6 @@ class MMD(nn.Module):
     def inference(self, support_xf, query_xf, query_y, beta=None, gamma=None):
         ns = support_xf.size(1)
         b, nq, nf, c = query_xf.size()
-        if self.num_groups > 1:
-            support_xf = support_xf.view(b, ns, nf, self.num_groups, -1).permute(0, 1, 3, 2,
-                                                                                 4).contiguous()  # b, ns, ng, nf,c
-            query_xf = query_xf.view(b, nq, nf, self.num_groups, -1).permute(0, 1, 3, 2, 4).contiguous()
         support_xf, query_xf = centering(support_xf, query_xf)
         if self.l2_norm:
             support_xf = _l2norm(support_xf, dim=-1)
@@ -73,13 +64,7 @@ class MMD(nn.Module):
 
         # switch 1
         if self.cfg.model.mmd.switch == "all_supports":
-            if self.num_groups > 1:
-                support_xf = support_xf.view(b, self.n_way, -1, self.num_groups, nf,
-                                             self.group_dim)  # b, n_way, k_shot*h*w, c_
-                support_xf = support_xf.permute(0, 1, 3, 2, 4, 5).reshape(b, self.n_way, self.num_groups, -1,
-                                                                          self.group_dim)
-            else:
-                support_xf = support_xf.reshape(b, self.n_way, -1, c)  # b, n_way, k_shot*h*w, c
+            support_xf = support_xf.reshape(b, self.n_way, -1, c)  # b, n_way, k_shot*h*w, c
             mmd_dis = self.mmd(support_xf, query_xf, beta=beta, gamma=gamma).view(b * nq, -1)
 
         # switch 2
@@ -119,11 +104,8 @@ class MMD_ori(MMD):
         self.feat_dim = in_channels
         self.num_head = 8
         self.num_groups = cfg.model.mmd.num_groups
-        if cfg.model.mmd.num_groups == 1:
-            self.mmd = MMDDistance(cfg, kernel=self.kernel)
-        else:
-            self.mmd = HeteroMMDDistance(cfg, kernel=self.kernel)
-            self.group_dim = self.feat_dim // self.num_groups
+        self.mmd = MMDDistance(cfg, kernel=self.kernel)
+
 
     def forward(self, support_xf, support_y, query_xf, query_y):
         # support_xf: b, num_supp, c, h, w
@@ -239,13 +221,7 @@ class AttentiveMMDPrompt(MMD):
             global_f = global_f.unsqueeze(dim-1).expand(-1, ng, -1, -1).unsqueeze(-1) # b, nq, ns, c, 1
             local_f = local_f.unsqueeze(dim-1).expand(-1, ng, -1, -1, -1) # b, nq, ns, nf,c
 
-        if self.num_groups > 1:
-            b, nq, ns, nf, c = local_f.size()
-            global_f = global_f.view(b, nq, ns, self.num_groups, -1, 1) # b, nq, ns, ng, c_, 1
-            local_f = local_f.view(b, nq, ns, nf, self.num_groups, -1).permute(0, 1, 2, 4, 3,5) # b, nq, ns, ng, nf, c_,
-            attn_weight = local_f @ global_f # b, nq, ns, ng, nf, 1
-        else:
-            attn_weight = local_f @ global_f # b, nq, ns, nf, 1
+        attn_weight = local_f @ global_f # b, nq, ns, nf, 1
 
         attn_weight = attn_weight / (self.alpha) #self.alpha  #self.alpha #0.2 mel 78
 
