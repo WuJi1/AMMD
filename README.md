@@ -52,9 +52,10 @@ AMMD
 
 The miniimagenet and tieredimagenet-DeepEMD dataset can be downloaded from [FRN](https://drive.google.com/drive/folders/1gHt-Ynku6Yc3mz6aKVTppIfNmzML1sNG). The CIFAR-FS and FC100 datasets can be downloaded from [DeepEMD](https://drive.google.com/drive/folders/1sXJgi9pXo8i3Jj1nk08Sxo6x7dAQjf9u?usp=sharing).
 
-### Pretrained model weights
 
+## Pretrained model weights
 
+Download the pretrained model weights from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `pretrain/` folder.
 
 ## Trained model weights
 
@@ -69,9 +70,9 @@ Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12
 
 Download the snapshot files from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
 
-### Evaluate the meta-trained model
+### Meta-training
 
-For example, MCL-Katz 5-way 1-shot ResNet12 VanillaFCN GPU 0
+For example, AMMD 5-way 1-shot Swin-Tiny miniimagenet GPU 0
 ```
 python experiments/run_evaluator.py \
   --cfg ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/MEL_katz_N5K1_R12.yaml \
@@ -79,23 +80,22 @@ python experiments/run_evaluator.py \
   --device 0
 ```
 
-### Meta-training
+### Evaluating AMMD
 
-For ResNet-12 and Swin-Tiny experiments, we first select the config files by analogous: 
+For example, AMMD 5-way 1-shot Swin-Tiny miniimagenet GPU 0
+```
+python experiments/run_evaluator.py \
+  --cfg ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/MEL_katz_N5K1_R12.yaml \
+  -c ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/ebest_5way_1shot.pth \
+  --device 0
+```
 
-where `xxx` is the prefix of `.yaml` file and `0` indicates the GPU device number.
 
 ## Few-shot Classification Results
 
-Experimental results on few-shot learning datasets with ResNet-12/Conv-4 backbone. We report average results with 10,000 randomly sampled episodes for both 1-shot and 5-shot evaluation.
+Experimental results on few-shot learning datasets with ResNet-12/ViT-Small/Swin-Tiny backbone. We report average results with 1,000 randomly sampled episodes for both 1-shot and 5-shot evaluation.
 
 <img src='README_imgs/MCL-basic-compare.png' width='600'>
-
-## MCL Centrality Plugins without Meta-training
-
-The centrality plugins experiments follow the pre-train + evaluation setting proposed in [Baseline](https://github.com/wyharveychen/CloserLookFewShot) that directly evaluates the methods without meta-training. We simply run `experiments/run_evaluator.py` on the pre-trained models that gives the following results:
-
-<img src='README_imgs/MCL-plugins.png' width='400'>
 
 ## Acknowledgement
 
