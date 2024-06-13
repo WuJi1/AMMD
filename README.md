@@ -52,15 +52,20 @@ AMMD
 
 The miniimagenet and tieredimagenet-DeepEMD dataset can be downloaded from [FRN](https://drive.google.com/drive/folders/1gHt-Ynku6Yc3mz6aKVTppIfNmzML1sNG). The CIFAR-FS and FC100 datasets can be downloaded from [DeepEMD](https://drive.google.com/drive/folders/1sXJgi9pXo8i3Jj1nk08Sxo6x7dAQjf9u?usp=sharing).
 
-### Pretraining
+### Pretrained model weights
 
 
 
-## Train and test
+## Trained model weights
 
-You can use the following links to download the train/test configs and saved checkpoints as following:
-
-
+The train/test config and saved checkpoints are saved in the following format:
+```
+Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12_67.509)
+├── predictions.txt (evaluation acc)
+├── config.yaml
+├── ebest_Nway_Kshot.txt (validation best epoch .txt)
+├── ebest_Nway_Kshot.pth (validation best epocg .pth)
+```
 
 Download the snapshot files from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
 
