@@ -33,7 +33,9 @@ Some comparing methods may require additional packages to run (e.g, OpenCV in De
 
 ## Dataset prepare
 
-The dataset should be placed in dir "./data/dataset_name" with the same format. For example, miniimagenet dataset is in the following format:
+The dataset should be placed in dir "./data/dataset_name" with the same format. 
+
+For example,  miniimagenet dataset is in the following format:
 
 ```
 AMMD
