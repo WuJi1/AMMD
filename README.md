@@ -16,8 +16,6 @@ issn = {0031-3203},
 doi = {https://doi.org/10.1016/j.patcog.2024.110680},
 url = {https://www.sciencedirect.com/science/article/pii/S003132032400431X},
 author = {Ji Wu and Shipeng Wang and Jian Sun},
-keywords = {Few-shot learning, Metric learning, Attentive MMD},
-abstract = {Metric-based methods have attained promising performance for few-shot image classification. Maximum Mean Discrepancy (MMD) is a typical distance between distributions, requiring to compute expectations w.r.t. data distributions. In this paper, we propose Attentive Maximum Mean Discrepancy (AMMD) to measure the distances between query images and support classes for few-shot classification. Each query image is classified as the support class with minimal AMMD distance. The proposed AMMD assists MMD with distributions adaptively estimated by an Attention-based Distribution Generation Module (ADGM). ADGM is learned to put more mass on more discriminative features, which makes the proposed AMMD distance emphasize discriminative features and overlook spurious features. Extensive experiments show that our AMMD achieves competitive or state-of-the-art performance on multiple few-shot classification benchmark datasets.}
 }
 ```
 
@@ -126,19 +124,17 @@ The centrality plugins experiments follow the pre-train + evaluation setting pro
 
 ## Acknowledgement
 
-- Our pretraining codes and configs follow [FRN](https://github.com/Tsingularity/FRN)
+We thank the following repos providing helpful components/functions in our work.
 
-- The dataset we used is from [DeepEMD](https://github.com/icoz69/DeepEMD)
+- [MCL](https://github.com/cyvius96/prototypical-network-pytorch)
 
-## Start your own methods
+- [FewTURE](https://github.com/mrkshllr/FewTURE)
 
-We reimplement many of state-of-the-art methods in our unified framework according to their original implementations, *i.e.*, 
-[DN4](https://github.com/WenbinLee/DN4), [DeepEMD](https://github.com/icoz69/DeepEMD), [FRN](https://github.com/Tsingularity/FRN), [DSN](https://github.com/chrysts/dsn_fewshot), [MetaOptNet](https://github.com/kjunelee/MetaOptNet), [R2D2](https://github.com/kjunelee/MetaOptNet), [CTX](https://github.com/lucidrains/cross-transformers-pytorch), [Baseline](https://github.com/wyharveychen/CloserLookFewShot), [Baseline++](https://github.com/wyharveychen/CloserLookFewShot), [NegativeMargin](https://github.com/bl0/negative-margin.few-shot), [ProtoNet](https://github.com/Sha-Lab/FEAT/blob/master/model/models/protonet.py), [RelationNet](https://github.com/floodsung/LearningToCompare_FSL), [MatchingNet](https://github.com/Sha-Lab/FEAT/blob/master/model/models/matchnet.py).
+- [CPEA](https://github.com/FushengHao/CPEA)
 
-It is easy to implement your own method in our unified framework by adding the similar `your-own-method.py` in the directory `./modules/query/` like the others.
 
 ## Contact
 
-We have tried our best to upload the correct snapshots on the google drive. However, since the config structures had been changed a lot in development (e.g., we introduce train/val/test n\_way k\_shot options instead of a single n_way k_shot in case some methods using the larger shot training), some of the `.yaml` configs in uploaded snapshots may have conflicts during loading.
+We have tried our best to upload the correct snapshots on the google drive.
 
-If you encounter any issues or have questions about using the code, feel free to contact me [lyng\_95@zju.edu.cn](lyng\_95@zju.edu.cn)
+If you encounter any issues or have questions about using the code, feel free to contact me [wuji98@stu.xjtu.edu.cn](wuji98@stu.xjtu.edu.cn)
