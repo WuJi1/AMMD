@@ -69,7 +69,7 @@ Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_AMMD_linear_tripl
 ├──── ebest_Nway_Kshot.pth (validation best epocg .pth)
 ```
 
-Moreover, The train/test config and saved checkpoints are saved in the following format as above:
+Moreover, The train/test config and saved checkpoints are saved in the following format as above.
 
 Download the meta-train snapshot from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
 
@@ -77,10 +77,30 @@ Download the meta-train snapshot from [Google Drive](https://drive.google.com/dr
 
 For example, AMMD 5-way 1-shot Swin-Tiny miniimagenet GPU 0
 ```
-python experiments/run_evaluator.py \
-  --cfg ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/MEL_katz_N5K1_R12.yaml \
-  -c ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/ebest_5way_1shot.pth \
+python experiments/run_trainer.py \
+  --cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K1_swin_0.3_0.2.yaml \
+  -pt ./pretrain/Swin/mini \
   --device 0
+```
+
+AMMD 5-way 5-shot Swin-Tiny ResNet-12 GPU 0,1
+```
+python experiments/run_trainer_multiGPUs.py \
+--cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K5_R12_0.3_0.2.yaml \
+-pt -pt ./pretrain/ResNet/mini \
+--d 0,1
+```
+
+AMMD 5-way 5-shot ViT-Small miniimagenet GPU 0
+```
+cd CPEA-based-AMMD4ViT
+python main_mmd_train.py --gpu 0 --way 5 --test_way 5 --shot 1 \
+  --dataset MiniImageNet \
+  --init_weights ../pretrain/ViT/mini/checkpoint1600.pth \
+  --loss_gamma 0.1 \
+  --temperature 1.0 \
+  --max_epoch 100 \
+  --exp mmd-fc100-main-5way-1shot-0.1-1.0 > mmd-fc100-main-5way-1shot-0.1-1.0.txt
 ```
 
 ### Evaluating AMMD
