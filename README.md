@@ -62,10 +62,11 @@ Download the pretrain weights from [Google Drive](https://drive.google.com/drive
 
 ```
 Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_AMMD_linear_triplet_N5K1_R12)
-├── predictions.txt (evaluation acc)
-├── config.yaml
-├── ebest_Nway_Kshot.txt (validation best epoch .txt)
-├── ebest_Nway_Kshot.pth (validation best epocg .pth)
+├──Time-Accuracy
+├──── predictions.txt (evaluation acc)
+├──── config.yaml
+├──── ebest_Nway_Kshot.txt (validation best epoch .txt)
+├──── ebest_Nway_Kshot.pth (validation best epocg .pth)
 ```
 
 Moreover, The train/test config and saved checkpoints are saved in the following format as above:
