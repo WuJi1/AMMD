@@ -58,7 +58,6 @@ We follow the pretrain method from FewTure for Swin-Tiny and ViT-Small backbone,
 
 Download the pretrained model weights from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `pretrain/` folder.
 
-Moreover, The train/test config and saved checkpoints are saved in the following format:
 ```
 Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12_67.509)
 ├── predictions.txt (evaluation acc)
@@ -66,6 +65,8 @@ Dataset_Method_NwayKshot_Backbone_Accuracy (e.g., miniImagenet_MEL_katz_N5K1_R12
 ├── ebest_Nway_Kshot.txt (validation best epoch .txt)
 ├── ebest_Nway_Kshot.pth (validation best epocg .pth)
 ```
+
+Moreover, The train/test config and saved checkpoints are saved in the following format as above:
 
 Download the snapshot files from [Google Drive](https://drive.google.com/drive/folders/1MWRvIDLRhBB9lL0yfLg84Ynq532gR5P6?usp=sharing) and extract it into the `snapshots/` folder.
 
