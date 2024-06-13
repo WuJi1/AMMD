@@ -75,15 +75,15 @@ Download the meta-train snapshot from [Google Drive](https://drive.google.com/dr
 
 ### Meta-training
 
-For example, AMMD 5-way 1-shot Swin-Tiny miniimagenet GPU 0
+For example, Swin-Tiny AMMD 5-way 5-shot miniimagenet GPU 0
 ```
 python experiments/run_trainer.py \
-  --cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K1_swin_0.3_0.2.yaml \
+  --cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K5_swin_0.3_0.5.yaml \
   -pt ./pretrain/Swin/mini \
   --device 0
 ```
 
-AMMD 5-way 5-shot Swin-Tiny ResNet-12 GPU 0,1
+ResNet-12 AMMD 5-way 5-shot Swin-Tiny GPU 0,1
 ```
 python experiments/run_trainer_multiGPUs.py \
 --cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K5_R12_0.3_0.2.yaml \
@@ -91,10 +91,10 @@ python experiments/run_trainer_multiGPUs.py \
 --d 0,1
 ```
 
-AMMD 5-way 5-shot ViT-Small miniimagenet GPU 0
+ViT-Small AMMD 5-way 5-shot miniimagenet GPU 0
 ```
 cd CPEA-based-AMMD4ViT
-python main_mmd_train.py --gpu 0 --way 5 --test_way 5 --shot 1 \
+python main_mmd_train.py --gpu 0 --way 5 --test_way 5 --shot 5 \
   --dataset MiniImageNet \
   --init_weights ../pretrain/ViT/mini/checkpoint1600.pth \
   --loss_gamma 0.1 \
