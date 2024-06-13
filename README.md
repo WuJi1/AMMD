@@ -83,7 +83,7 @@ python experiments/run_trainer.py \
   --device 0
 ```
 
-ResNet-12 AMMD 5-way 5-shot Swin-Tiny GPU 0,1
+ResNet-12 AMMD 5-way 5-shot miniimagenet GPU 0,1
 ```
 python experiments/run_trainer_multiGPUs.py \
 --cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K5_R12_0.3_0.2.yaml \
@@ -100,17 +100,29 @@ python main_mmd_train.py --gpu 0 --way 5 --test_way 5 --shot 5 \
   --loss_gamma 0.1 \
   --temperature 1.0 \
   --max_epoch 100 \
-  --exp mmd-fc100-main-5way-1shot-0.1-1.0 > mmd-fc100-main-5way-1shot-0.1-1.0.txt
+  --exp mmd-mini-main-5way-1shot-0.1-1.0 > mmd-mini-main-5way-1shot-0.1-1.0.txt
 ```
 
-### Evaluating AMMD
+### Only Evaluating AMMD
 
-For example, AMMD 5-way 1-shot Swin-Tiny miniimagenet GPU 0
+For example, ResNet-12 AMMD 5-way 5-shot GPU 0
 ```
-python experiments/run_evaluator.py \
-  --cfg ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/MEL_katz_N5K1_R12.yaml \
-  -c ./snapshots/ResNet-12/MEL_katz/VanillaFCN/miniImagenet_MEL_katz_N5K1_R12_67.509/ebest_5way_1shot.pth \
+python experiments/run_evaluater.py \
+  --cfg ./snapshots/miniImagenet_AMMD_linear_triplet_N5K5_R12/2023-10-27-22_03_85.226/AMMD_linear_triplet_N5K5_R12_0.3_0.2.yaml \
+  -pt ./snapshots/miniImagenet_AMMD_linear_triplet_N5K5_R12/2023-10-27-22_03_85.226/ebest_5way_5shot.pth \
   --device 0
+```
+
+ViT-Small AMMD 5-way 5-shot miniimagenet GPU 0
+```
+cd CPEA-based-AMMD4ViT
+python main_mmd_evaluate.py --gpu 0 --way 5 --test_way 5 --shot 1 \
+  --dataset MiniImageNet \
+  --init_weights ../pretrain/ViT/mini/checkpoint1600.pth \
+  --loss_gamma 0.1 \
+  --temperature 1.0 \
+  --max_epoch 10 \
+  --exp mmd-mini-main-5way-1shot-0.1-1.0 > mmd-mini-main-5way-1shot-0.1-1.0-only_test.txt
 ```
 
 
