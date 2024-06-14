@@ -13,9 +13,7 @@ def make_fsl(cfg):
 class FSLQuery(nn.Module):
     def __init__(self, cfg):
         super().__init__()
-        
         self.encoder = make_encoder(cfg)
-        self.vit_cpea = CPEA()
         self.query = make_query(self.encoder.out_channels, cfg)
         self.forward_encoding = cfg.model.forward_encoding
         self.pyramid_list = self._parse_encoding_params()
@@ -157,7 +155,6 @@ class FSLQuery(nn.Module):
             raise NotImplementedError
         return support_xf, support_y, query_xf, query_y
         
-    #def forward(self, support_x, support_y, query_x, query_y,episode): #visualization
     def forward(self, support_x, support_y, query_x, query_y):
         support_xf, support_y, query_xf, query_y = self.forward_feature(support_x, support_y, query_x, query_y)
         query = self.query(support_xf, support_y, query_xf, query_y)
