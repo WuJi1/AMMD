@@ -19,7 +19,7 @@ author = {Ji Wu and Shipeng Wang and Jian Sun},
 
 ## Overview
 
-<img src='README_imgs/fig1.pdf' width='800'>
+<img src='README_imgs/overview.png' width='800'>
 
 ## Code Prerequisites
 
@@ -56,7 +56,7 @@ The miniimagenet and tieredimagenet-DeepEMD dataset can be downloaded from [FRN]
 
 ## Train and Test
 
-We follow the pretrain method from FewTure for Swin-Tiny and ViT-Small backbone, MCL for ResNet-12 backbone.
+We follow the pretrain method from [FewTURE](https://github.com/mrkshllr/FewTURE) for Swin-Tiny and ViT-Small backbone, [MCL](https://github.com/cyvius96/prototypical-network-pytorch) for ResNet-12 backbone.
 
 Download the pretrain weights from [Google Drive](https://drive.google.com/drive/folders/1Y2mEmOQHcTcKprVlZbtvRgXsPXT7IiD2?usp=drive_link) and extract it into the `pretrain/` folder.
 
@@ -130,7 +130,9 @@ python main_mmd_evaluate.py --gpu 0 --way 5 --test_way 5 --shot 1 \
 
 Experimental results on few-shot learning datasets with ResNet-12/ViT-Small/Swin-Tiny backbone. We report average results with 1,000 randomly sampled episodes for both 1-shot and 5-shot evaluation.
 
-<img src='README_imgs/AMMD_result.png' width='600'>
+<img src='README_imgs/AMMD_result_1.png' width='600'>
+
+<img src='README_imgs/AMMD_result_2.png' width='600'>
 
 ## Acknowledgement
 
