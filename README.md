@@ -19,11 +19,7 @@ author = {Ji Wu and Shipeng Wang and Jian Sun},
 
 ## Overview
 
-<<<<<<< HEAD
-<img src='README_imgs/overview.gif' width='800'>
-=======
 <img src='README_imgs/fig1.pdf' width='800'>
->>>>>>> cc3051c (clear up)
 
 ## Code Prerequisites
 
@@ -91,11 +87,7 @@ ResNet-12 AMMD 5-way 5-shot miniimagenet GPU 0,1
 ```
 python experiments/run_trainer_multiGPUs.py \
 --cfg ./configs_AMMD/miniImagenet/AMMD_linear_triplet_N5K5_R12_0.3_0.2.yaml \
-<<<<<<< HEAD
--pt -pt ./pretrain/ResNet/mini \
-=======
 -pt ./pretrain/ResNet/mini \
->>>>>>> cc3051c (clear up)
 --d 0,1
 ```
 
@@ -117,13 +109,8 @@ For example, ResNet-12 AMMD 5-way 5-shot GPU 0
 ```
 python experiments/run_evaluater.py \
   --cfg ./snapshots/miniImagenet_AMMD_linear_triplet_N5K5_R12/2023-10-27-22_03_85.226/AMMD_linear_triplet_N5K5_R12_0.3_0.2.yaml \
-<<<<<<< HEAD
-  -pt ./snapshots/miniImagenet_AMMD_linear_triplet_N5K5_R12/2023-10-27-22_03_85.226/ebest_5way_5shot.pth \
-  --device 0
-=======
   -c ./snapshots/miniImagenet_AMMD_linear_triplet_N5K5_R12/2023-10-27-22_03_85.226/ebest_5way_5shot.pth \
   -d 0
->>>>>>> cc3051c (clear up)
 ```
 
 ViT-Small AMMD 5-way 5-shot miniimagenet GPU 0
@@ -143,11 +130,7 @@ python main_mmd_evaluate.py --gpu 0 --way 5 --test_way 5 --shot 1 \
 
 Experimental results on few-shot learning datasets with ResNet-12/ViT-Small/Swin-Tiny backbone. We report average results with 1,000 randomly sampled episodes for both 1-shot and 5-shot evaluation.
 
-<<<<<<< HEAD
-<img src='README_imgs/MCL-basic-compare.png' width='600'>
-=======
 <img src='README_imgs/AMMD_result.png' width='600'>
->>>>>>> cc3051c (clear up)
 
 ## Acknowledgement
 
@@ -164,8 +147,4 @@ We thank the following repos providing helpful components/functions in our work.
 
 We have tried our best to upload the correct snapshots on the google drive.
 
-<<<<<<< HEAD
 If you encounter any issues or have questions about using the code, feel free to contact me [wuji98@stu.xjtu.edu.cn](wuji98@stu.xjtu.edu.cn)
-=======
-If you encounter any issues or have questions about using the code, feel free to contact me [wuji98@stu.xjtu.edu.cn](wuji98@stu.xjtu.edu.cn)
->>>>>>> cc3051c (clear up)
