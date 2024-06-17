@@ -1,6 +1,6 @@
 # Attentive maximum mean discrepancy for few-shot image classification
 
-Official PyTorch implementation of the paper **AMMD: Attentive maximum mean discrepancy for few-shot image classification (PR 2024)**
+Official PyTorch implementation of our PR2024 paper [**AMMD: Attentive maximum mean discrepancy for few-shot image classification**](https://www.sciencedirect.com/science/article/pii/S003132032400431X)
 
 If you use this code or find this work useful for your research, please cite:
 
