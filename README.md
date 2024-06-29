@@ -149,4 +149,4 @@ We thank the following repos providing helpful components/functions in our work.
 
 We have tried our best to upload the correct snapshots on the google drive.
 
-If you encounter any issues or have questions about using the code, feel free to contact me [wuji98@stu.xjtu.edu.cn](wuji98@stu.xjtu.edu.cn)
+If you encounter any issues or have questions about using the code, feel free to contact me [wuji98@stu.xjtu.edu.cn](wuji98@stu.xjtu.edu.cn).
