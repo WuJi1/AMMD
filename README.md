@@ -1,4 +1,4 @@
-<img width="802" height="706" alt="image" src="https://github.com/user-attachments/assets/bbd7ebec-2f61-4fa8-88fc-bd6716b5390f" /># Attentive maximum mean discrepancy for few-shot image classification
+# Attentive maximum mean discrepancy for few-shot image classification
 
 Official PyTorch implementation of our PR 2024 paper [**AMMD: Attentive maximum mean discrepancy for few-shot image classification**](https://www.sciencedirect.com/science/article/pii/S003132032400431X)
 
