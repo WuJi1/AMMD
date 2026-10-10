@@ -1,4 +1,4 @@
-# Attentive maximum mean discrepancy for few-shot image classification
+<img width="802" height="706" alt="image" src="https://github.com/user-attachments/assets/bbd7ebec-2f61-4fa8-88fc-bd6716b5390f" /># Attentive maximum mean discrepancy for few-shot image classification
 
 Official PyTorch implementation of our PR 2024 paper [**AMMD: Attentive maximum mean discrepancy for few-shot image classification**](https://www.sciencedirect.com/science/article/pii/S003132032400431X)
 
@@ -52,8 +52,7 @@ AMMD
 │   │   │   ├──────
 ```
 
-The miniimagenet and tieredimagenet-DeepEMD dataset can be downloaded from [FRN](https://drive.google.com/drive/folders/1gHt-Ynku6Yc3mz6aKVTppIfNmzML1sNG). The CIFAR-FS and FC100 datasets can be downloaded from [DeepEMD](https://drive.google.com/drive/folders/1sXJgi9pXo8i3Jj1nk08Sxo6x7dAQjf9u?usp=sharing).
-
+The miniimagenet, tieredimagenet-DeepEMD, CIFAR-FS and FC100 datasets can be downloaded from [google drive](https://drive.google.com/drive/folders/1LjyVpIJXFhcE5zejN1Cb7AFPzxhLevhh?usp=drive_link).
 ## Train and Test
 
 We follow the pretrain method from [FewTURE](https://github.com/mrkshllr/FewTURE) for Swin-Tiny and ViT-Small backbone, [MCL](https://github.com/cyvius96/prototypical-network-pytorch) for ResNet-12 backbone.
